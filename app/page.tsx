@@ -20,8 +20,8 @@ export default function Page() {
 
   return (
     <main className="pb-24">
-      <div className="bg-primary-700">
-        <div className="absolute inset-0 opacity-[0.6] bg-[url('/grid-white.png')] bg-repeat bg-contain bg-center -z-10" />
+      <div className="bg-gradient-to-r from-[#057252] to-[#059669]">
+        <div className="absolute inset-0 opacity-[0.5] bg-[url('/grid-white.png')] bg-repeat-y bg-contain bg-center" />
         <div className="text-white py-48">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-6xl font-bold max-w-4xl mx-auto text-center">

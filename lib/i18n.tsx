@@ -3,8 +3,12 @@
 import React, { createContext } from "react";
 
 import en from "@/locales/en.json";
+// import ml from "@/locales/ml.json";
 
-const dictionaries = { en } as const;
+const dictionaries = {
+  en,
+  // ml,
+} as const;
 
 export type Locale = keyof typeof dictionaries;
 export type Dictionary = (typeof dictionaries)[Locale];
