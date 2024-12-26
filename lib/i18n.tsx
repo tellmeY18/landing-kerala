@@ -3,19 +3,16 @@
 import React, { createContext } from "react";
 
 import en from "@/locales/en.json";
-// import ml from "@/locales/ml.json";
+import ml from "@/locales/ml.json";
 
-const dictionaries = {
-  en,
-  // ml,
-} as const;
+const dictionaries = { en, ml } as const;
 
 export type Locale = keyof typeof dictionaries;
 export type Dictionary = (typeof dictionaries)[Locale];
 
 export const languages = [
   { display: "English", code: "en" },
-  // { display: "മലയാളം", code: "ml" },
+  { display: "മലയാളം", code: "ml" },
 ] as const satisfies { display: string; code: Locale }[];
 
 const getDictionary = (locale: Locale) => dictionaries[locale];

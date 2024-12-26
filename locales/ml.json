@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "services": "Services",
+    "findFacility": "Find a Facility",
+    "about": "About Palliative Care",
+    "gridLogin": "Grid Login"
+  },
+  "hero": {
+    "title": "COMMUNITY BASED PALLIATIVE CARE GRID."
+  },
+  "about": {
+    "title": "About Kerala Care",
+    "description": "Kerala palliative care grid is a community-based healthcare network where trained volunteers and medical professionals collaborate to support people with Serious Health Related suffering through home-based care, incorporating medical, social, and emotional support for both patients and families. Monitored by the State Health Authority.",
+    "readMore": "Read More",
+    "gridRegistration": "Grid Registration",
+    "buttons": {
+      "register": "Register a Patient",
+      "volunteer": "Become a Volunteer",
+      "ngo": "Fund a NGO/CBO",
+      "login": "Already Registered/Login Here"
+    }
+  },
+  "legacy": {
+    "title": "Legacy of Compassion",
+    "quote": "In Kerala, we believe healthcare is not a privilege but a fundamental right. The Community-Based Palliative Care Grid is a reflection of this vision — a network that ensures no individual is left to suffer alone. It unites our communities, volunteers, and professionals to provide care with dignity and compassion, reaching every home that needs support.",
+    "author": "Pinarayi Vijayan, Chief Minister of Kerala"
+  },
+  "stats": {
+    "careUnits": "Govt. Care Units",
+    "patientVisits": "Monthly Patient Visits",
+    "ngoUnits": "NGO/CBO Care Units",
+    "bedBoundPatients": "Bed Bound Patients"
+  },
+  "services": {
+    "title": "Services Available",
+    "items": {
+      "nurses": "Nurses Home care",
+      "doctors": "Doctors Home care",
+      "outPatient": "Out-Patient Facility",
+      "medical": "Medical Support",
+      "materials": "Materials & Consumables",
+      "comfort": "Comfort Devices",
+      "volunteer": "Volunteer Support",
+      "inPatient": "In-Patient Facility"
+    }
+  },
+  "facilities": {
+    "title": "Facilities Finder",
+    "pincode": "Enter your PIN code to find nearby care facilities",
+    "form": {
+      "pincode": "Pincode",
+      "ward": "Ward",
+      "district": "District",
+      "state": "State",
+      "continue": "Continue"
+    }
+  },
+  "palliativeCare": {
+    "title": "About Palliative Care",
+    "questions": [
+      {
+        "question": "What exactly is palliative care?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "What types of conditions can benefit from palliative care?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "When should someone consider palliative care?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "Who makes up a palliative care team?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "How does palliative care help manage pain and symptoms?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "How does palliative care support families and caregivers?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      }
+    ]
+  }
+}
