@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
+import { Inter } from "next/font/google";
+import { Nav } from "@/components/Nav";
+import Footer from "@/components/footer";
+
+const font = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,9 +18,14 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body className="smooth-scroll antialiased">
-        <I18nProvider>{children}</I18nProvider>
+    <html className={font.variable}>
+      <body className="smooth-scroll antialiased relative">
+        <div className="absolute bg-gray-50 inset-0 opacity-[1] bg-[url('/grid-green.png')] bg-fixed bg-repeat bg-contain bg-center -z-10" />
+        <I18nProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );

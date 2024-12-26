@@ -10,12 +10,14 @@
   },
   "about": {
     "title": "About Kerala Care",
-    "description": "Kerala palliative care grid is a community-based healthcare network where trained volunteers and medical professionals collaborate to support people with serious illnesses. We provide comprehensive home-based care, incorporating medical, social, and emotional support for both patients and families.",
+    "description": "Kerala palliative care grid is a community-based healthcare network where trained volunteers and medical professionals collaborate to support people with Serious Health Related suffering through home-based care, incorporating medical, social, and emotional support for both patients and families. Monitored by the State Health Authority.",
     "readMore": "Read More",
+    "gridRegistration": "Grid Registration",
     "buttons": {
       "register": "Register a Patient",
       "volunteer": "Become a Volunteer",
-      "ngo": "Fund a NGO/CBO"
+      "ngo": "Fund a NGO/CBO",
+      "login": "Already Registered/Login Here"
     }
   },
   "legacy": {
@@ -26,7 +28,8 @@
   "stats": {
     "careUnits": "Govt. Care Units",
     "patientVisits": "Monthly Patient Visits",
-    "ngoUnits": "NGO/CBO Care Units"
+    "ngoUnits": "NGO/CBO Care Units",
+    "bedBoundPatients": "Bed Bound Patients"
   },
   "services": {
     "title": "Services Available",

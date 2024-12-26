@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+      },
       colors: {
         primary: {
           100: "#def7ec",

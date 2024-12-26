@@ -20,10 +20,11 @@ export function Nav() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 text-white p-4 py-8 transition-all duration-500 ease-in-out",
+        "sticky top-0 z-50 text-white p-4 py-8 bg-primary-700 transition-all duration-500 ease-in-out",
         shrinked && "bg-primary-900 shadow-lg py-3"
       )}
     >
+      <div className="absolute inset-0 opacity-[0.6] bg-[url('/grid-white.png')] bg-repeat bg-contain bg-center -z-10" />
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
@@ -34,24 +35,23 @@ export function Nav() {
           />
         </Link>
         <div className="hidden md:flex items-center space-x-6">
-          <Link href="#services" className="hover:text-primary-100">
-            {dict.nav.services}
-          </Link>
-          <Link href="#find-a-facility" className="hover:text-primary-100">
-            {dict.nav.findFacility}
-          </Link>
-          <Link
-            href="#about-palliative-care"
-            className="hover:text-primary-100"
-          >
-            {dict.nav.about}
-          </Link>
-          <Link
-            href={process.env.NEXT_PUBLIC_GRID_LOGIN_URL!}
-            className="hover:text-primary-100"
-          >
-            {dict.nav.gridLogin}
-          </Link>
+          {[
+            { label: dict.nav.services, href: "#services" },
+            { label: dict.nav.findFacility, href: "#find-a-facility" },
+            { label: dict.nav.about, href: "#about-palliative-care" },
+            {
+              label: dict.nav.gridLogin,
+              href: process.env.NEXT_PUBLIC_GRID_LOGIN_URL!,
+            },
+          ].map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              className="hover:text-primary-100"
+            >
+              {item.label}
+            </Link>
+          ))}
           <LanguageSwitcher />
         </div>
       </div>
