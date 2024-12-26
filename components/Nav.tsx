@@ -1,12 +1,14 @@
 "use client";
 
-import { Dictionary } from "@/i18n-config";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useI18n } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
-export function Nav({ dict }: { dict: Dictionary }) {
+export function Nav() {
+  const { dict } = useI18n();
   const [shrinked, setShrinked] = React.useState(false);
 
   React.useEffect(() => {
@@ -45,11 +47,12 @@ export function Nav({ dict }: { dict: Dictionary }) {
             {dict.nav.about}
           </Link>
           <Link
-            href="/login"
-            className="bg-white text-primary-600 px-4 py-2 rounded hover:bg-primary-50"
+            href={process.env.NEXT_PUBLIC_GRID_LOGIN_URL!}
+            className="hover:text-primary-100"
           >
             {dict.nav.gridLogin}
           </Link>
+          <LanguageSwitcher />
         </div>
       </div>
     </nav>

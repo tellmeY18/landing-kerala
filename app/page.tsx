@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Accordion,
@@ -17,20 +19,16 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { getDictionary, Locale } from "@/i18n-config";
 import { Nav } from "@/components/Nav";
+import { useI18n } from "@/lib/i18n";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: Locale }>;
-}) {
-  const dict = await getDictionary((await params).lang);
+export default function Page() {
+  const { dict } = useI18n();
 
   return (
     <main className="relative bg-primary-600">
       <div className="absolute inset-0 opacity-[0.6] pointer-events-none bg-[url('/grid-white.png')] bg-repeat bg-contain bg-center" />
-      <Nav dict={dict} />
+      <Nav />
 
       {/* Hero */}
       <div className="text-white py-20">
