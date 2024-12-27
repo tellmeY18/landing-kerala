@@ -264,17 +264,14 @@ export default function Page() {
                 <div className="space-y-6">
                   <Title>{t("palliativeCare.title")}</Title>
                   <Accordion type="single" collapsible defaultValue="item-0">
-                    {(
-                      t("palliativeCare.questions") as unknown as Array<{
-                        question: string;
-                        answer: string;
-                      }>
-                    ).map(({ question, answer }, index: number) => (
-                      <AccordionItem key={index} value={`item-${index}`}>
-                        <AccordionTrigger>{question}</AccordionTrigger>
-                        <AccordionContent>{answer}</AccordionContent>
-                      </AccordionItem>
-                    ))}
+                    {t("palliativeCare.questions").map(
+                      ({ question, answer }, index: number) => (
+                        <AccordionItem key={index} value={`item-${index}`}>
+                          <AccordionTrigger>{question}</AccordionTrigger>
+                          <AccordionContent>{answer}</AccordionContent>
+                        </AccordionItem>
+                      )
+                    )}
                   </Accordion>
                 </div>
               </div>
