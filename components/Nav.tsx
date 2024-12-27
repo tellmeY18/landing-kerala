@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function Nav() {
-  const { dict } = useI18n();
+  const { t } = useI18n();
   const [shrinked, setShrinked] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,11 +36,11 @@ export function Nav() {
         </Link>
         <div className="hidden md:flex items-center space-x-6">
           {[
-            { label: dict.nav.services, href: "#services" },
-            { label: dict.nav.findFacility, href: "#find-a-facility" },
-            { label: dict.nav.about, href: "#about-palliative-care" },
+            { label: t("nav.services"), href: "#services" },
+            { label: t("nav.findFacility"), href: "#find-a-facility" },
+            { label: t("nav.about"), href: "#about-palliative-care" },
             {
-              label: dict.nav.gridLogin,
+              label: t("nav.gridLogin"),
               href: process.env.NEXT_PUBLIC_GRID_LOGIN_URL!,
             },
           ].map((item, index) => (

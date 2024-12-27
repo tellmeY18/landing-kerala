@@ -8,7 +8,7 @@ import ml from "@/locales/ml.json";
 const dictionaries = { en, ml } as const;
 
 export type Locale = keyof typeof dictionaries;
-export type Dictionary = (typeof dictionaries)[Locale];
+export type Dictionary = typeof dictionaries.en;
 
 export const languages = [
   { display: "English", code: "en" },
@@ -17,10 +17,12 @@ export const languages = [
 
 const getDictionary = (locale: Locale) => dictionaries[locale];
 
+type TranslationFunction = (key: string) => string;
+
 interface I18nContextType {
   language: Locale;
   setLanguage: (lang: Locale) => void;
-  dict: Dictionary;
+  t: TranslationFunction;
 }
 
 export const I18nContext = createContext<I18nContextType | undefined>(
@@ -28,14 +30,26 @@ export const I18nContext = createContext<I18nContextType | undefined>(
 );
 
 export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = React.useState<Locale>(
-    (process.env.NEXT_PUBLIC_DEFAULT_LOCALE ?? "en") as Locale
-  );
+  const [language, setLanguage] = React.useState<Locale>("en");
 
-  const dict = getDictionary(language);
+  const currentDict = getDictionary(language);
+  const englishDict = getDictionary("en");
+
+  const t: TranslationFunction = (key) => {
+    const keys = key.split(".");
+    let result: unknown = currentDict;
+    let fallback: unknown = englishDict;
+
+    for (const k of keys) {
+      result = (result as Record<string, unknown>)?.[k];
+      fallback = (fallback as Record<string, unknown>)?.[k];
+    }
+
+    return (result as string) || (fallback as string) || key;
+  };
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, dict }}>
+    <I18nContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </I18nContext.Provider>
   );

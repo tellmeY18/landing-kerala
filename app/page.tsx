@@ -16,16 +16,16 @@ import Icons from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
-  const { dict } = useI18n();
+  const { t } = useI18n();
 
   return (
     <main className="pb-24">
-      <div className="bg-gradient-to-r from-[#057252] to-[#059669]">
+      <div className="relative bg-gradient-to-r from-[#057252] to-[#059669] -z-10">
         <div className="absolute inset-0 opacity-[0.5] bg-[url('/grid-white.png')] bg-repeat-y bg-contain bg-center" />
         <div className="text-white py-48">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-6xl font-bold max-w-4xl mx-auto text-center">
-              {dict.hero.title}
+              {t("hero.title")}
             </h1>
           </div>
         </div>
@@ -45,15 +45,15 @@ export default function Page() {
               />
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-primary-800">
-                  {dict.about.title}
+                  {t("about.title")}
                 </h2>
                 <p className="text-gray-600 text-lg text-justify">
-                  {dict.about.description} {/* TODO: update the link */}
+                  {t("about.description")} {/* TODO: update the link */}
                   <a
                     href="/about"
                     className="underline underline-offset-2 text-primary-600"
                   >
-                    {dict.about.readMore}
+                    {t("about.readMore")}
                   </a>
                 </p>
               </div>
@@ -62,7 +62,7 @@ export default function Page() {
             {/* Grid registration */}
             <div className="w-full max-w-xs mx-auto bg-white rounded-lg shadow-md p-6">
               <h2 className="text font-semibold text-primary-700">
-                {dict.about.gridRegistration}
+                {t("about.gridRegistration")}
               </h2>
               <Separator className="my-4" />
               <div className="space-y-6">
@@ -72,7 +72,7 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700"
                   asChild
                 >
-                  <a href="/register/patient">{dict.about.buttons.register}</a>
+                  <a href="#find-a-facility">{t("about.buttons.register")}</a>
                 </Button>
                 <Button
                   variant="default"
@@ -80,7 +80,7 @@ export default function Page() {
                   asChild
                 >
                   <a href="/register/volunteer">
-                    {dict.about.buttons.volunteer}
+                    {t("about.buttons.volunteer")}
                   </a>
                 </Button>
                 <Button
@@ -88,14 +88,14 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700"
                   asChild
                 >
-                  <a href="/register/ngo">{dict.about.buttons.ngo}</a>
+                  <a href="/register/ngo">{t("about.buttons.ngo")}</a>
                 </Button>
                 <div className="text-center">
                   <a
                     href="/login"
                     className="text-primary-600 hover:text-primary-700 text-sm"
                   >
-                    {dict.about.buttons.login}
+                    {t("about.buttons.login")}
                   </a>
                 </div>
               </div>
@@ -119,13 +119,13 @@ export default function Page() {
                     />
                   </div>
                   <div className="w-full md:w-2/3 space-y-4 pr-10">
-                    <Title>{dict.legacy.title}</Title>
+                    <Title>{t("legacy.title")}</Title>
                     <blockquote className="text-gray-600 leading-relaxed pr-16">
-                      &ldquo;{dict.legacy.quote}&rdquo;
+                      &ldquo;{t("legacy.quote")}&rdquo;
                     </blockquote>
                     <div className="flex justify-between items-center">
                       <cite className="text-primary-800 font-semibold text-lg">
-                        {dict.legacy.author}
+                        {t("legacy.author")}
                       </cite>
                       <Image
                         src="/cm-signature.png"
@@ -148,10 +148,10 @@ export default function Page() {
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { number: "500+", label: dict.stats.ngoUnits },
-                  { number: "1487", label: dict.stats.careUnits },
-                  { number: "1,16,549", label: dict.stats.bedBoundPatients },
-                  { number: "2,00,000+", label: dict.stats.patientVisits },
+                  { number: "500+", label: t("stats.ngoUnits") },
+                  { number: "1487", label: t("stats.careUnits") },
+                  { number: "1,16,549", label: t("stats.bedBoundPatients") },
+                  { number: "2,00,000+", label: t("stats.patientVisits") },
                 ].map((stat, index) => (
                   <div key={index} className="space-y-2">
                     <div className="text-4xl font-black text-zinc-800">
@@ -169,40 +169,40 @@ export default function Page() {
         <section id="services" className="pt-24">
           <div className="bg-white shadow-md rounded-lg py-16">
             <div className="container mx-auto px-4">
-              <Title className="text-center mb-12">{dict.services.title}</Title>
+              <Title className="text-center mb-12">{t("services.title")}</Title>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-16">
                 {[
                   {
                     icon: Icons.NursesHomeCare,
-                    label: dict.services.items.nurses,
+                    label: t("services.items.nurses"),
                   },
                   {
                     icon: Icons.DoctorsHomeCare,
-                    label: dict.services.items.doctors,
+                    label: t("services.items.doctors"),
                   },
                   {
                     icon: Icons.OutPatientFacility,
-                    label: dict.services.items.outPatient,
+                    label: t("services.items.outPatient"),
                   },
                   {
                     icon: Icons.MedicalSupport,
-                    label: dict.services.items.medical,
+                    label: t("services.items.medical"),
                   },
                   {
                     icon: Icons.MaterialsAndConsumables,
-                    label: dict.services.items.materials,
+                    label: t("services.items.materials"),
                   },
                   {
                     icon: Icons.ComfortDevices,
-                    label: dict.services.items.comfort,
+                    label: t("services.items.comfort"),
                   },
                   {
                     icon: Icons.VolunteerSupport,
-                    label: dict.services.items.volunteer,
+                    label: t("services.items.volunteer"),
                   },
                   {
                     icon: Icons.InPatientFacility,
-                    label: dict.services.items.inPatient,
+                    label: t("services.items.inPatient"),
                   },
                 ].map((service, index) => (
                   <div
@@ -232,14 +232,14 @@ export default function Page() {
                   />
                 </div>
                 <div className="space-y-6">
-                  <Title>{dict.facilities.title}</Title>
-                  <p className="text-gray-600">{dict.facilities.pincode}</p>
+                  <Title>{t("facilities.title")}</Title>
+                  <p className="text-gray-600">{t("facilities.pincode")}</p>
                   <form className="space-y-4">
-                    <Input placeholder={dict.facilities.form.pincode} />
-                    <Input placeholder={dict.facilities.form.ward} />
-                    <Input placeholder={dict.facilities.form.district} />
-                    <Input placeholder={dict.facilities.form.state} />
-                    <Button>{dict.facilities.form.continue}</Button>
+                    <Input placeholder={t("facilities.form.pincode")} />
+                    <Input placeholder={t("facilities.form.ward")} />
+                    <Input placeholder={t("facilities.form.district")} />
+                    <Input placeholder={t("facilities.form.state")} />
+                    <Button>{t("facilities.form.continue")}</Button>
                   </form>
                 </div>
               </div>
@@ -262,16 +262,19 @@ export default function Page() {
                   />
                 </div>
                 <div className="space-y-6">
-                  <Title>{dict.palliativeCare.title}</Title>
+                  <Title>{t("palliativeCare.title")}</Title>
                   <Accordion type="single" collapsible defaultValue="item-0">
-                    {dict.palliativeCare.questions.map(
-                      ({ question, answer }, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                          <AccordionTrigger>{question}</AccordionTrigger>
-                          <AccordionContent>{answer}</AccordionContent>
-                        </AccordionItem>
-                      )
-                    )}
+                    {(
+                      t("palliativeCare.questions") as unknown as Array<{
+                        question: string;
+                        answer: string;
+                      }>
+                    ).map(({ question, answer }, index: number) => (
+                      <AccordionItem key={index} value={`item-${index}`}>
+                        <AccordionTrigger>{question}</AccordionTrigger>
+                        <AccordionContent>{answer}</AccordionContent>
+                      </AccordionItem>
+                    ))}
                   </Accordion>
                 </div>
               </div>
