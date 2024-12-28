@@ -221,9 +221,9 @@ export default function Page() {
         {/* Find a facility */}
         <section id="find-a-facility" className="pt-56">
           <div className="bg-white shadow-md rounded-lg py-12">
-            <div className="container -my-32 mx-auto px-4">
+            <div className="container md:-my-32 mx-auto px-4">
               <div className="grid md:grid-cols-2 gap-12 items-center px-4">
-                <div className="mx-auto">
+                <div className="hidden md:block mx-auto">
                   <Image
                     src="/facilities-finder.svg"
                     alt="Kerala Map"

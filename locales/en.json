@@ -16,7 +16,7 @@
     "buttons": {
       "register": "Register a Patient",
       "volunteer": "Become a Volunteer",
-      "ngo": "Fund a NGO/CBO",
+      "ngo": "Register NGO/CBO",
       "login": "Already Registered/Login Here"
     }
   },
@@ -87,29 +87,29 @@
   "footer": {
     "govtLinks": [
       {
-        "label": "Kerala Care",
+        "label": "Link 1",
         "link": "https://keralacare.in"
       },
       {
-        "label": "Kerala Care",
+        "label": "Link 2",
         "link": "https://keralacare.in"
       },
       {
-        "label": "Kerala Care",
+        "label": "Link 3",
         "link": "https://keralacare.in"
       }
     ],
     "resourceLinks": [
       {
-        "label": "Kerala Care",
+        "label": "Link 1",
         "link": "https://keralacare.in"
       },
       {
-        "label": "Kerala Care",
+        "label": "Link 2",
         "link": "https://keralacare.in"
       },
       {
-        "label": "Kerala Care",
+        "label": "Link 3",
         "link": "https://keralacare.in"
       }
     ],
