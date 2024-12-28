@@ -56,7 +56,7 @@ export function Nav() {
             <Link
               key={index}
               href={item.href}
-              className="hover:text-primary-100 transition-colors"
+              className="hover:text-primary-100 hover:underline hover:underline-offset-4 transition-colors"
             >
               {item.label}
             </Link>
@@ -81,13 +81,13 @@ export function Nav() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden py-4">
+        <div className="md:hidden py-4 my-4 bg-white/10 backdrop-blur-sm rounded-lg">
           <div className="flex flex-col space-y-4 items-center">
             {navItems.map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
-                className="hover:text-primary-100 transition-colors w-full text-center py-2"
+                className=" hover:text-primary-100 transition-colors w-full text-center py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}

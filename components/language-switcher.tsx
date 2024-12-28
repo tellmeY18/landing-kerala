@@ -1,40 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { languages, useI18n } from "@/lib/i18n";
-import { Globe } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useI18n();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="bg-white/10 border-white/20"
-        >
-          <Globe className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {languages.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            onClick={() => setLanguage(lang.code)}
-            className={language === lang.code ? "bg-accent" : ""}
-          >
-            {lang.display}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="link"
+      className="text-white hover:text-primary-100 text-base"
+      onClick={() => setLanguage(language === "en" ? "ml" : "en")}
+    >
+      {language === "en" ? "മലയാളം" : "English"}
+    </Button>
   );
 }

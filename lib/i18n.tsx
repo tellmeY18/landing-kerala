@@ -60,8 +60,16 @@ export const I18nContext = createContext<I18nContextType | undefined>(
   undefined
 );
 
-export const I18nProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = React.useState<Locale>("en");
+interface I18nProviderProps {
+  children: React.ReactNode;
+  initialLanguage?: Locale;
+}
+
+export const I18nProvider = ({
+  children,
+  initialLanguage = "en",
+}: I18nProviderProps) => {
+  const [language, setLanguage] = React.useState<Locale>(initialLanguage);
 
   const currentDict = getDictionary(language);
   const englishDict = getDictionary("en");

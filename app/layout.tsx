@@ -22,7 +22,7 @@ export default async function Layout({
     <html className={font.variable}>
       <body className="smooth-scroll antialiased relative">
         <div className="absolute bg-gray-50 inset-0 opacity-[1] bg-[url('/grid-green.png')] bg-fixed bg-repeat bg-contain bg-center -z-10" />
-        <I18nProvider>
+        <I18nProvider initialLanguage="ml">
           <Nav />
           {children}
           <Footer />
