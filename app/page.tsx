@@ -34,14 +34,14 @@ export default function Page() {
       <div className="flex flex-col pt-20 -mt-32 container mx-auto px-4 max-w-6xl">
         {/* About */}
         <section id="about">
-          <div className="flex gap-2">
-            <div className="p-6 bg-white shadow-md rounded-lg flex gap-6">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="p-4 md:p-6 bg-white shadow-md rounded-lg flex flex-col md:flex-row gap-6 flex-grow">
               <Image
                 src="/placeholder.svg?height=200&width=200"
                 alt="About Kerala Care"
                 width={300}
                 height={300}
-                className="w-full rounded-lg size-64"
+                className="w-full md:w-auto rounded-lg size-64"
               />
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-primary-800">
@@ -60,7 +60,7 @@ export default function Page() {
             </div>
 
             {/* Grid registration */}
-            <div className="w-full max-w-xs mx-auto bg-white rounded-lg shadow-md p-6">
+            <div className="w-full lg:max-w-xs mx-auto bg-white rounded-lg shadow-md p-6">
               <h2 className="text font-semibold text-primary-700">
                 {t("about.gridRegistration")}
               </h2>
@@ -108,7 +108,7 @@ export default function Page() {
           <div className="bg-white shadow-md rounded-lg">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row items-center gap-y-8">
+                <div className="flex flex-col md:flex-row items-center gap-y-8 px-4">
                   <div className="w-full md:w-1/3">
                     <Image
                       src="/cm-portrait.png"
@@ -118,13 +118,13 @@ export default function Page() {
                       className="-mt-16"
                     />
                   </div>
-                  <div className="w-full md:w-2/3 space-y-4 pr-10">
+                  <div className="w-full md:w-2/3 space-y-4 md:pr-10">
                     <Title>{t("legacy.title")}</Title>
-                    <blockquote className="text-gray-600 leading-relaxed pr-16">
+                    <blockquote className="text-gray-600 leading-relaxed md:pr-16">
                       &ldquo;{t("legacy.quote")}&rdquo;
                     </blockquote>
-                    <div className="flex justify-between items-center">
-                      <cite className="text-primary-800 font-semibold text-lg">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                      <cite className="text-primary-800 font-semibold text-lg text-center md:text-left">
                         {t("legacy.author")}
                       </cite>
                       <Image
@@ -170,7 +170,7 @@ export default function Page() {
           <div className="bg-white shadow-md rounded-lg py-16">
             <div className="container mx-auto px-4">
               <Title className="text-center mb-12">{t("services.title")}</Title>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-16">
                 {[
                   {
                     icon: Icons.NursesHomeCare,
@@ -222,13 +222,14 @@ export default function Page() {
         <section id="find-a-facility" className="pt-56">
           <div className="bg-white shadow-md rounded-lg py-12">
             <div className="container -my-32 mx-auto px-4">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
+              <div className="grid md:grid-cols-2 gap-12 items-center px-4">
+                <div className="mx-auto">
                   <Image
                     src="/facilities-finder.svg"
                     alt="Kerala Map"
                     width={378}
                     height={678}
+                    className="w-full max-w-[378px]"
                   />
                 </div>
                 <div className="space-y-6">
@@ -251,14 +252,14 @@ export default function Page() {
         <section id="about-palliative-care" className="pt-24">
           <div className="bg-white rounded-lg shadow-md py-16">
             <div className="container mx-auto px-4">
-              <div className="grid md:grid-cols-2 gap-12">
-                <div>
+              <div className="grid md:grid-cols-2 gap-12 px-4">
+                <div className="mx-auto w-full">
                   <Image
                     src="/placeholder.svg?height=400&width=600"
                     alt="Palliative Care"
                     width={600}
                     height={400}
-                    className="rounded-lg"
+                    className="rounded-lg w-full"
                   />
                 </div>
                 <div className="space-y-6">
