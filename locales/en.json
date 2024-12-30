@@ -46,9 +46,8 @@
   },
   "facilities": {
     "title": "Facilities Finder",
-    "pincode": "Enter your PIN code to find nearby care facilities",
+    "description": "Enter your location to find nearby care facilities",
     "form": {
-      "pincode": "Pincode",
       "ward": "Ward",
       "district": "District",
       "state": "State",

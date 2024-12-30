@@ -234,12 +234,11 @@ export default function Page() {
                 </div>
                 <div className="space-y-6">
                   <Title>{t("facilities.title")}</Title>
-                  <p className="text-gray-600">{t("facilities.pincode")}</p>
+                  <p className="text-gray-600">{t("facilities.description")}</p>
                   <form className="space-y-4">
-                    <Input placeholder={t("facilities.form.pincode")} />
-                    <Input placeholder={t("facilities.form.ward")} />
-                    <Input placeholder={t("facilities.form.district")} />
                     <Input placeholder={t("facilities.form.state")} />
+                    <Input placeholder={t("facilities.form.district")} />
+                    <Input placeholder={t("facilities.form.ward")} />
                     <Button>{t("facilities.form.continue")}</Button>
                   </form>
                 </div>
