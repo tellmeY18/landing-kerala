@@ -79,7 +79,7 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700"
                   asChild
                 >
-                  <a href="/register/volunteer">
+                  <a href="https://sannadhasena.kerala.gov.in/volunteerregistration" target="_blank">
                     {t("about.buttons.volunteer")}
                   </a>
                 </Button>
