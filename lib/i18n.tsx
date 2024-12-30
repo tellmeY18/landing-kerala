@@ -1,7 +1,6 @@
 "use client";
 
-import React, { createContext } from "react";
-
+import React, { createContext, useEffect, useState, useContext } from "react";
 import en from "@/locales/en.json";
 import ml from "@/locales/ml.json";
 
@@ -47,7 +46,7 @@ export const languages = [
 const getDictionary = (locale: Locale) => dictionaries[locale];
 
 type TranslationFunction = <K extends TranslationKey>(
-  key: K
+  key: K,
 ) => PathValue<Dictionary, K>;
 
 interface I18nContextType {
@@ -57,7 +56,7 @@ interface I18nContextType {
 }
 
 export const I18nContext = createContext<I18nContextType | undefined>(
-  undefined
+  undefined,
 );
 
 interface I18nProviderProps {
@@ -69,7 +68,18 @@ export const I18nProvider = ({
   children,
   initialLanguage = "en",
 }: I18nProviderProps) => {
-  const [language, setLanguage] = React.useState<Locale>(initialLanguage);
+  const [language, setLanguage] = useState<Locale>(initialLanguage);
+
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language") as Locale;
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   const currentDict = getDictionary(language);
   const englishDict = getDictionary("en");
@@ -95,7 +105,7 @@ export const I18nProvider = ({
 };
 
 export const useI18n = () => {
-  const context = React.useContext(I18nContext);
+  const context = useContext(I18nContext);
   if (context === undefined) {
     throw new Error("useI18n must be used within an I18nProvider");
   }
