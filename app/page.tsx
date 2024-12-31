@@ -43,11 +43,11 @@ export default function Page() {
                 height={300}
                 className="w-full md:w-auto rounded-lg size-64"
               />
-              <div className="space-y-4">
+              <div className="space-y-4 px-6 md:px-0">
                 <h2 className="text-2xl font-bold text-primary-800">
                   {t("about.title")}
                 </h2>
-                <p className="text-gray-600 text-lg text-justify">
+                <p className="text-gray-600 text-lg text-left">
                   {t("about.description")} {/* TODO: update the link */}
                   <a
                     href="/about"
@@ -69,14 +69,14 @@ export default function Page() {
                 {/* TODO: update the links */}
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700"
+                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
                   asChild
                 >
                   <a href="#find-a-facility">{t("about.buttons.register")}</a>
                 </Button>
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700"
+                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
                   asChild
                 >
                   <a
@@ -88,7 +88,7 @@ export default function Page() {
                 </Button>
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700"
+                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
                   asChild
                 >
                   <a href="/register/ngo">{t("about.buttons.ngo")}</a>
