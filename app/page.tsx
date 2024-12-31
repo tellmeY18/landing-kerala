@@ -79,7 +79,10 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700"
                   asChild
                 >
-                  <a href="https://sannadhasena.kerala.gov.in/volunteerregistration" target="_blank">
+                  <a
+                    href="https://sannadhasena.kerala.gov.in/volunteerregistration"
+                    target="_blank"
+                  >
                     {t("about.buttons.volunteer")}
                   </a>
                 </Button>
@@ -170,7 +173,7 @@ export default function Page() {
           <div className="bg-white shadow-md rounded-lg py-16">
             <div className="container mx-auto px-4">
               <Title className="text-center mb-12">{t("services.title")}</Title>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 md:px-16">
                 {[
                   {
                     icon: Icons.NursesHomeCare,
@@ -189,10 +192,6 @@ export default function Page() {
                     label: t("services.items.medical"),
                   },
                   {
-                    icon: Icons.MaterialsAndConsumables,
-                    label: t("services.items.materials"),
-                  },
-                  {
                     icon: Icons.ComfortDevices,
                     label: t("services.items.comfort"),
                   },
@@ -203,6 +202,14 @@ export default function Page() {
                   {
                     icon: Icons.InPatientFacility,
                     label: t("services.items.inPatient"),
+                  },
+                  {
+                    icon: Icons.InPatientFacility,
+                    label: t("services.items.careHomes"),
+                  },
+                  {
+                    icon: Icons.InPatientFacility,
+                    label: t("services.items.domiciliaryNursingCare"),
                   },
                 ].map((service, index) => (
                   <div

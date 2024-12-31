@@ -38,10 +38,11 @@
       "doctors": "Doctors Home care",
       "outPatient": "Out-Patient Facility",
       "medical": "Medical Support",
-      "materials": "Materials & Consumables",
       "comfort": "Comfort Devices",
       "volunteer": "Volunteer Support",
-      "inPatient": "In-Patient Facility"
+      "inPatient": "In-Patient Facility",
+      "careHomes": "Care Homes",
+      "domiciliaryNursingCare": "Domiciliary Nursing Care"
     }
   },
   "facilities": {
