@@ -21,9 +21,9 @@ export function Nav() {
   }, []);
 
   const navItems = [
-    { label: t("nav.services"), href: "#services" },
-    { label: t("nav.findFacility"), href: "#find-a-facility" },
-    { label: t("nav.about"), href: "#about-palliative-care" },
+    { label: t("nav.services"), href: "/#services" },
+    { label: t("nav.findFacility"), href: "/#find-a-facility" },
+    { label: t("nav.about"), href: "/#about-palliative-care" },
     {
       label: t("nav.gridLogin"),
       href: process.env.NEXT_PUBLIC_GRID_LOGIN_URL!,
