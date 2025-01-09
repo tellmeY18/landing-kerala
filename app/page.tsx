@@ -20,10 +20,14 @@ export default function Page() {
 
   return (
     <main className="pb-24">
-      <div className="relative bg-gradient-to-r from-[#057252] to-[#059669] -z-10">
-        <div className="absolute inset-0 opacity-[0.5] bg-[url('/grid-white.png')] bg-repeat-y bg-contain bg-center" />
-        <div className="text-white py-48">
-          <div className="container mx-auto px-4">
+      <div className="relative min-h-screen -mt-40 -z-10">
+        <div
+          className="absolute inset-0 bg-[url('/cover-image.png')] bg-cover bg-center"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+        <div className="relative z-10 text-white drop-shadow-2xl min-h-screen flex items-center">
+          <div className="container mx-auto px-4 pt-[92px]">
             <h1 className="text-4xl md:text-6xl font-bold max-w-4xl mx-auto text-center">
               {t("hero.title")}
             </h1>
@@ -31,7 +35,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="flex flex-col pt-20 -mt-32 container mx-auto px-4 max-w-6xl">
+      <div className="flex flex-col pt-20 -mt-40 container mx-auto px-4 max-w-6xl">
         {/* About */}
         <section id="about">
           <div className="flex flex-col lg:flex-row gap-4">
@@ -261,7 +265,7 @@ export default function Page() {
               <div className="grid md:grid-cols-2 gap-12 px-4">
                 <div className="mx-auto w-full">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="/palliative-care-cover.png"
                     alt="Palliative Care"
                     width={600}
                     height={400}

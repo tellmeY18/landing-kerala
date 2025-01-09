@@ -15,7 +15,7 @@ export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onScroll = () => setShrinked(window.scrollY > 100);
+    const onScroll = () => setShrinked(window.scrollY > 200);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -33,12 +33,18 @@ export function Nav() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 text-white bg-gradient-to-r from-[#057252] to-[#059669] transition-all duration-500 ease-in-out",
-        shrinked ? "py-3" : "py-8",
-        "px-4"
+        "sticky top-0 z-[100] text-white transition-all duration-500 ease-in-out px-4 shadow-xl",
+        shrinked
+          ? "py-2 bg-gradient-to-r from-[#057252] to-[#059669]"
+          : "py-4 bg-transparent backdrop-blur-md"
       )}
     >
-      <div className="absolute inset-0 opacity-[0.6] bg-[url('/grid-white.png')] bg-repeat bg-contain bg-center -z-10" />
+      {shrinked && (
+        <div
+          className="absolute inset-0 opacity-[0.6] bg-[url('/grid-white.png')] bg-repeat bg-contain bg-center -z-10"
+          aria-hidden="true"
+        />
+      )}
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
