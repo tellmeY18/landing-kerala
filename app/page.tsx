@@ -230,17 +230,17 @@ export default function Page() {
         </section>
 
         {/* Find a facility */}
-        <section id="find-a-facility" className="pt-56">
+        <section id="find-a-facility" className="pt-24">
           <div className="bg-white shadow-md rounded-lg py-12">
-            <div className="container md:-my-32 mx-auto px-4">
+            <div className="container mx-auto px-4">
               <div className="grid md:grid-cols-2 gap-12 items-center px-4">
                 <div className="hidden md:block mx-auto">
                   <Image
                     src="/facilities-finder.svg"
                     alt="Kerala Map"
-                    width={378}
-                    height={678}
-                    className="w-full max-w-[378px]"
+                    width={252}
+                    height={452}
+                    className="w-full max-w-[252px]"
                   />
                 </div>
                 <div className="space-y-6">
