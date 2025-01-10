@@ -52,25 +52,18 @@ export default function Page() {
                   {t("about.title")}
                 </h2>
                 <p className="text-gray-600 text-lg text-left">
-                  {t("about.description")} {/* TODO: update the link */}
-                  <a
-                    href="/about"
-                    className="underline underline-offset-2 text-primary-600"
-                  >
-                    {t("about.readMore")}
-                  </a>
+                  {t("about.description")}
                 </p>
               </div>
             </div>
 
             {/* Grid registration */}
-            <div className="w-full lg:max-w-xs mx-auto bg-white rounded-lg shadow-md p-6">
+            <div className="w-full lg:max-w-sm mx-auto bg-white rounded-lg shadow-md p-6">
               <h2 className="text font-semibold text-primary-700">
                 {t("about.gridRegistration")}
               </h2>
               <Separator className="my-4" />
               <div className="space-y-6">
-                {/* TODO: update the links */}
                 <Button
                   variant="default"
                   className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
@@ -95,11 +88,12 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
                   asChild
                 >
+                  {/* TODO: update the link */}
                   <a href="/register/ngo">{t("about.buttons.ngo")}</a>
                 </Button>
                 <div className="text-center">
                   <a
-                    href="/login"
+                    href={process.env.NEXT_PUBLIC_GRID_LOGIN_URL!}
                     className="text-primary-600 hover:text-primary-700 text-sm"
                   >
                     {t("about.buttons.login")}

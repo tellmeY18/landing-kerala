@@ -11,7 +11,6 @@
   "about": {
     "title": "About Kerala Care",
     "description": "Kerala palliative care grid is a community-based healthcare network where trained volunteers and medical professionals collaborate to support people with Serious Health Related suffering through home-based care, incorporating medical, social, and emotional support for both patients and families. Monitored by the State Health Authority.",
-    "readMore": "Read More",
     "gridRegistration": "Grid Registration",
     "buttons": {
       "register": "Register a Patient",
@@ -85,32 +84,26 @@
     ]
   },
   "footer": {
-    "govtLinks": [
+    "resources": [
       {
-        "label": "Link 1",
-        "link": "https://keralacare.in"
+        "label": "National Health Mission - Government of Kerala",
+        "link": "https://arogyakeralam.gov.in"
       },
       {
-        "label": "Link 2",
-        "link": "https://keralacare.in"
+        "label": "Local Self Government Department | LSGD Kerala",
+        "link": "https://lsgkerala.gov.in"
       },
       {
-        "label": "Link 3",
-        "link": "https://keralacare.in"
-      }
-    ],
-    "resourceLinks": [
-      {
-        "label": "Link 1",
-        "link": "https://keralacare.in"
+        "label": "Digital University Kerala",
+        "link": "https://duk.ac.in"
       },
       {
-        "label": "Link 2",
-        "link": "https://keralacare.in"
+        "label": "Samoohika Sannadhasena",
+        "link": "https://sannadhasena.kerala.gov.in"
       },
       {
-        "label": "Link 3",
-        "link": "https://keralacare.in"
+        "label": "Kerala Startup Mission: Home",
+        "link": "https://startupmission.kerala.gov.in"
       }
     ],
     "developedBy": "Developed and Maintained by the people of Kerala"
