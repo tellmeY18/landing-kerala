@@ -15,7 +15,7 @@ export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onScroll = () => setShrinked(window.scrollY > 200);
+    const onScroll = () => setShrinked(window.scrollY > 150);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -33,10 +33,10 @@ export function Nav() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-[100] text-white transition-all duration-500 ease-in-out px-4 shadow-xl",
+        "sticky top-0 z-[100] text-white transition-all duration-1000 ease-in-out px-4",
         shrinked
-          ? "py-2 bg-gradient-to-r from-[#057252] to-[#059669]"
-          : "py-4 bg-transparent backdrop-blur-md"
+          ? "py-2 bg-gradient-to-r from-[#057252] to-[#059669] backdrop-blur-none shadow-xl"
+          : "py-4 bg-transparent backdrop-blur-[2px] shadow-none"
       )}
     >
       {shrinked && (
