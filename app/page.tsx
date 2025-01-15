@@ -41,8 +41,8 @@ export default function Page() {
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="p-4 md:p-6 bg-white shadow-md rounded-lg flex flex-col md:flex-row gap-6 flex-grow">
               <Image
-                src="/placeholder.svg?height=200&width=200"
-                alt="About Kerala Care"
+                src="/about-kerala-care.png"
+                alt="Palliative Care"
                 width={300}
                 height={300}
                 className="w-full md:w-auto rounded-lg size-64"
@@ -259,10 +259,10 @@ export default function Page() {
               <div className="grid md:grid-cols-2 gap-12 px-4">
                 <div className="mx-auto w-full">
                   <Image
-                    src="/palliative-care-cover.png"
+                    src="/about-palliative-care.png"
                     alt="Palliative Care"
                     width={600}
-                    height={400}
+                    height={600}
                     className="rounded-lg w-full"
                   />
                 </div>
