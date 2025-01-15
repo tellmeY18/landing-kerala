@@ -20,13 +20,13 @@ export default function Page() {
 
   return (
     <main className="pb-24">
-      <div className="relative min-h-screen -mt-40 -z-10">
+      <div className="relative h-[90vh] lg:min-h-screen -mt-40 -z-10">
         <div
           className="absolute inset-0 bg-[url('/cover-image.png')] bg-cover bg-center"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-        <div className="relative z-10 text-white drop-shadow-2xl min-h-screen flex items-center">
+        <div className="relative z-10 text-white drop-shadow-2xl h-[90vh] lg:min-h-screen flex items-center">
           <div className="container mx-auto px-4 pt-[92px]">
             <h1 className="text-4xl md:text-6xl font-bold max-w-4xl mx-auto text-center">
               {t("hero.title")}
@@ -66,14 +66,14 @@ export default function Page() {
               <div className="space-y-6">
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
+                  className="w-full bg-primary-600 hover:bg-primary-700 md:text-lg font-bold"
                   asChild
                 >
                   <a href="#find-a-facility">{t("about.buttons.register")}</a>
                 </Button>
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
+                  className="w-full bg-primary-600 hover:bg-primary-700 md:text-lg font-bold"
                   asChild
                 >
                   <a
@@ -85,7 +85,7 @@ export default function Page() {
                 </Button>
                 <Button
                   variant="default"
-                  className="w-full bg-primary-600 hover:bg-primary-700 text-lg font-bold"
+                  className="w-full bg-primary-600 hover:bg-primary-700 md:text-lg font-bold"
                   asChild
                 >
                   {/* TODO: update the link */}

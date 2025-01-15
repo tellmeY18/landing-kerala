@@ -5,12 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useI18n } from "@/lib/i18n";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 
 export function Nav() {
-  const { t } = useI18n();
+  const { t, language, setLanguage } = useI18n();
   const [shrinked, setShrinked] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -67,7 +66,13 @@ export function Nav() {
               {item.label}
             </Link>
           ))}
-          <LanguageSwitcher />
+          <Button
+            variant="link"
+            className="text-white hover:text-primary-100 text-base"
+            onClick={() => setLanguage(language === "en" ? "ml" : "en")}
+          >
+            {language === "en" ? "മലയാളം" : "English"}
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -85,22 +90,29 @@ export function Nav() {
         </Button>
       </div>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden py-4 my-4 bg-white/10 backdrop-blur-sm rounded-lg">
-          <div className="flex flex-col space-y-4 items-center">
-            {navItems.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className=" hover:text-primary-100 transition-colors w-full text-center py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="pt-2">
-              <LanguageSwitcher />
+        <div className="absolute left-0 right-0 top-full md:hidden">
+          <div className="mx-4 py-4 bg-gray-100 text-black rounded-lg">
+            <div className="flex flex-col space-y-4 items-center">
+              {navItems.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="hover:text-primary-100 transition-colors w-full text-center py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="pt-2">
+                <Button
+                  variant="link"
+                  className="text-black text-base"
+                  onClick={() => setLanguage(language === "en" ? "ml" : "en")}
+                >
+                  {language === "en" ? "മലയാളം" : "English"}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
