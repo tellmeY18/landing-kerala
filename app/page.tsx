@@ -202,11 +202,11 @@ export default function Page() {
                     label: t("services.items.inPatient"),
                   },
                   {
-                    icon: Icons.InPatientFacility,
+                    icon: Icons.CareHomes,
                     label: t("services.items.careHomes"),
                   },
                   {
-                    icon: Icons.InPatientFacility,
+                    icon: Icons.DomiciliaryNursingCare,
                     label: t("services.items.domiciliaryNursingCare"),
                   },
                 ].map((service, index) => (
