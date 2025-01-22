@@ -18,7 +18,7 @@ export default function Footer() {
               alt="Kerala Care Logo"
               width={150}
               height={150}
-              className="mx-auto md:mx-0 mb-4 md:mb-0 bg-white p-2 rounded-md shadow"
+              className="mx-auto md:mx-0 mb-4 md:mb-0 p-2 invert"
             />
             {resources.map((link) => (
               <a
