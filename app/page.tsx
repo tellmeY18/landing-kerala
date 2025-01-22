@@ -89,7 +89,7 @@ export default function Page() {
                   asChild
                 >
                   {/* TODO: update the link */}
-                  <a href="/register/ngo">{t("about.buttons.ngo")}</a>
+                  <a href="#">{t("about.buttons.ngo")}</a>
                 </Button>
                 <div className="text-center">
                   <a
