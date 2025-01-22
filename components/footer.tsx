@@ -13,6 +13,13 @@ export default function Footer() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col gap-12 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2 w-full md:w-auto">
+            <Image
+              src="/kerala-dark_state_logo.png"
+              alt="Kerala Care Logo"
+              width={150}
+              height={150}
+              className="mx-auto md:mx-0 mb-4 md:mb-0 bg-white p-2 rounded-md shadow"
+            />
             {resources.map((link) => (
               <a
                 href={link.link}

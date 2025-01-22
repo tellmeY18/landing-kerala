@@ -128,13 +128,6 @@ export default function Page() {
                       <cite className="text-primary-800 font-semibold text-lg text-center md:text-left">
                         {t("legacy.author")}
                       </cite>
-                      <Image
-                        src="/cm-signature.png"
-                        alt="Chief Minister's Signature"
-                        width={200}
-                        height={80}
-                        className="h-12 w-auto"
-                      />
                     </div>
                   </div>
                 </div>
@@ -215,7 +208,7 @@ export default function Page() {
                     className="flex items-center justify-center gap-4"
                   >
                     {service.icon}
-                    <div className="w-24 text-left">{service.label}</div>
+                    <div className="w-32 text-left">{service.label}</div>
                   </div>
                 ))}
               </div>
