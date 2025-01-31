@@ -31,7 +31,11 @@ const getChildren = async (parentId: string) => {
   return res.json() as Promise<Organization[]>;
 };
 
-export default function GovtOrgSelector() {
+export default function GovtOrgSelector({
+  trigger,
+}: {
+  trigger?: (organization?: Organization) => React.ReactNode;
+}) {
   const { t } = useI18n();
   const [search, setSearch] = useState("");
   const [selectedOrgs, setSelectedOrgs] = useState<Organization[]>([]);
@@ -110,15 +114,21 @@ export default function GovtOrgSelector() {
         )}
       </div>
 
-      <Button disabled={selectedOrgs.length === 0} asChild>
-        <Link
-          href={`${process.env.NEXT_PUBLIC_GRID_URL}/facilities?organization=${
-            selectedOrgs[selectedOrgs.length - 1]?.id ?? ""
-          }`}
-        >
-          {t("facilities.form.continue")}
-        </Link>
-      </Button>
+      {trigger ? (
+        trigger(selectedOrgs[selectedOrgs.length - 1])
+      ) : (
+        <Button disabled={selectedOrgs.length === 0} asChild>
+          <Link
+            href={`${
+              process.env.NEXT_PUBLIC_GRID_URL
+            }/facilities?organization=${
+              selectedOrgs[selectedOrgs.length - 1]?.id ?? ""
+            }`}
+          >
+            {t("facilities.form.continue")}
+          </Link>
+        </Button>
+      )}
     </form>
   );
 }
