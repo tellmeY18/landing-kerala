@@ -7,11 +7,13 @@ import React from "react";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function Nav() {
   const { t, language, setLanguage } = useI18n();
   const [shrinked, setShrinked] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const pathname = usePathname();
 
   React.useEffect(() => {
     const onScroll = () => setShrinked(window.scrollY > 150);
@@ -33,7 +35,7 @@ export function Nav() {
     <nav
       className={cn(
         "sticky top-0 z-[100] text-white transition-all duration-1000 ease-in-out px-4",
-        shrinked
+        shrinked || pathname !== "/"
           ? "py-2 bg-gradient-to-r from-[#057252] to-[#059669] backdrop-blur-none shadow-xl"
           : "py-4 bg-transparent backdrop-blur-[2px] shadow-none"
       )}

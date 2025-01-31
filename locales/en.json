@@ -107,5 +107,12 @@
       }
     ],
     "developedBy": "Developed and Maintained by the people of Kerala"
+  },
+  "dashboard": {
+    "title": "Open Dashboard",
+    "description": "Select an organization to view the dashboard",
+    "form": {
+      "submit": "View Dashboard"
+    }
   }
 }
