@@ -31,7 +31,7 @@ export default function DashboardPage() {
                   org ? (
                     <Button asChild>
                       <Link
-                        href={`/dashboard/${org.id}`}
+                        href={`${process.env.NEXT_PUBLIC_GOV_DASHBOARD_URL}/?id=${org.id}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full"
