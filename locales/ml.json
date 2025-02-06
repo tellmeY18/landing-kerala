@@ -86,16 +86,16 @@
   "footer": {
     "resources": [
       {
-        "label": "ഡയറക്ടറേറ്റ് ഓഫ് ഹെൽത്ത് സർവീസസ് - കേരള സർക്കാർ",
+        "label": "ആരോഗ്യ കുടുംബക്ഷേമ വകുപ്പ്",
         "link": "https://dhs.kerala.gov.in/en/dhs/"
-      },
-      {
-        "label": "നാഷണൽ ഹെൽത്ത് മിഷൻ",
-        "link": "https://arogyakeralam.gov.in"
       },
       {
         "label": "തദ്ദേശ സ്വയംഭരണ വകുപ്പ്",
         "link": "https://lsgkerala.gov.in"
+      },
+      {
+        "label": "നാഷണൽ ഹെൽത്ത് മിഷൻ",
+        "link": "https://arogyakeralam.gov.in"
       },
       {
         "label": "ഡിജിറ്റൽ യൂനിവേഴ്സിറ്റി കേരള",

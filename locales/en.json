@@ -86,16 +86,16 @@
   "footer": {
     "resources": [
       {
-        "label": "Directorate of Health Services - Government of Kerala",
+        "label": "⁠Health and Family Welfare Department",
         "link": "https://dhs.kerala.gov.in/en/dhs/"
-      },
-      {
-        "label": "National Health Mission",
-        "link": "https://arogyakeralam.gov.in"
       },
       {
         "label": "Local Self Government Department",
         "link": "https://lsgkerala.gov.in"
+      },
+      {
+        "label": "National Health Mission",
+        "link": "https://arogyakeralam.gov.in"
       },
       {
         "label": "Digital University Kerala",
