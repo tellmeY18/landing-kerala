@@ -86,7 +86,11 @@
   "footer": {
     "resources": [
       {
-        "label": "National Health Mission - Government of Kerala",
+        "label": "Directorate of Health Services - Government of Kerala",
+        "link": "https://dhs.kerala.gov.in/en/dhs/"
+      },
+      {
+        "label": "National Health Mission",
         "link": "https://arogyakeralam.gov.in"
       },
       {
