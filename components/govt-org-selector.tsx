@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/popover";
 import { useI18n } from "@/lib/i18n";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type Organization = {
   id: string;
@@ -37,6 +37,7 @@ export default function GovtOrgSelector({
   trigger?: (organization?: Organization) => React.ReactNode;
 }) {
   const { t } = useI18n();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [selectedOrgs, setSelectedOrgs] = useState<Organization[]>([]);
   const [results, setResults] = useState<Organization[]>([]);
@@ -86,6 +87,7 @@ export default function GovtOrgSelector({
             <PopoverContent className="w-[300px] p-0" align="start">
               <Command>
                 <CommandInput
+                  ref={inputRef}
                   placeholder="Search"
                   className="outline-none border-none ring-0 shadow-none"
                   value={search}
@@ -100,7 +102,8 @@ export default function GovtOrgSelector({
                         value={org.name}
                         onSelect={() => {
                           setSelectedOrgs([...selectedOrgs, org]);
-                          setShowPopover(false);
+                          setSearch("");
+                          inputRef.current?.focus();
                         }}
                       >
                         <span>{org.name}</span>
