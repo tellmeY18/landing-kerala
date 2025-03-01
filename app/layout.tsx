@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 import { Inter } from "next/font/google";
-import { Nav } from "@/components/Nav";
-import Footer from "@/components/footer";
 
 const font = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -22,11 +20,7 @@ export default async function Layout({
     <html className={font.variable}>
       <body className="smooth-scroll antialiased relative">
         <div className="absolute bg-gray-50 inset-0 opacity-[1] bg-[url('/grid-green.png')] bg-fixed bg-repeat bg-contain bg-center -z-10" />
-        <I18nProvider initialLanguage="ml">
-          <Nav />
-          {children}
-          <Footer />
-        </I18nProvider>
+        <I18nProvider initialLanguage="ml">{children}</I18nProvider>
       </body>
     </html>
   );
