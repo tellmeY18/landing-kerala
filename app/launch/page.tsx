@@ -266,10 +266,10 @@ export default function LaunchPage() {
         <div className="absolute opacity-10 pointer-events-none">
           <Image
             src="/facilities-finder.svg"
-            width={800}
-            height={1200}
+            width={600}
+            height={800}
             alt="Kerala map outline"
-            className="w-[800px] h-[1200px]"
+            className="w-[600px] h-[800px]"
           />
         </div>
 
