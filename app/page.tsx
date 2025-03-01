@@ -88,8 +88,9 @@ export default function Page() {
                   className="w-full bg-primary-600 hover:bg-primary-700 md:text-lg font-bold"
                   asChild
                 >
-                  {/* TODO: update the link */}
-                  <a href="#">{t("about.buttons.ngo")}</a>
+                  <a href="https://sannadhasena.kerala.gov.in/ngocbo">
+                    {t("about.buttons.ngo")}
+                  </a>
                 </Button>
                 <div className="text-center">
                   <a
