@@ -175,6 +175,18 @@ export default function LaunchPage() {
     };
   }, [isLaunching, router]);
 
+  // Add keyboard event listener for Enter key
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Enter" && !isLaunching) {
+        handleLaunch();
+      }
+    };
+
+    window.addEventListener("keypress", handleKeyPress);
+    return () => window.removeEventListener("keypress", handleKeyPress);
+  }, [isLaunching]);
+
   const handleLaunch = () => {
     setIsLaunching(true);
   };
@@ -367,7 +379,7 @@ export default function LaunchPage() {
               >
                 {/* System messages */}
                 <div className="w-full max-w-md h-64 overflow-hidden bg-green-950/50 border border-green-800/50 rounded-lg p-4 font-mono text-sm mb-8">
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 text-left">
                     <AnimatePresence>
                       {systemMessages.map((message, index) => (
                         <motion.div
