@@ -8,7 +8,7 @@ import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";
 
 export default function LaunchedPage() {
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(7);
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function LaunchedPage() {
 
     const redirectTimeout = setTimeout(() => {
       router.push("/?autoscroll=true");
-    }, 10000);
+    }, 7000);
 
     return () => {
       clearInterval(redirectTimer);

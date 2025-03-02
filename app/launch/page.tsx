@@ -2,178 +2,256 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Activity, CheckCircle2 } from "lucide-react";
+
+// Move messages array outside the component to prevent recreation on each render
+const LAUNCH_MESSAGES = [
+  "Initializing Kerala Palliative Care Grid...",
+  "Establishing secure connections...",
+  "Activating district nodes...",
+  "Connecting healthcare facilities...",
+  "Integrating community support systems...",
+  "Synchronizing clinical systems...",
+  "Activating response protocols...",
+  "Enabling critical services...",
+  "Finalizing system integration...",
+  "Launching Kerala Palliative Care Grid...",
+];
 
 export default function LaunchPage() {
   const [isLaunching, setIsLaunching] = useState(false);
   const [launchStep, setLaunchStep] = useState(0);
   const [gridNodes, setGridNodes] = useState<
-    { id: number; x: number; y: number; status: string }[]
+    { id: number; x: number; y: number; status: string; iconType: string }[]
   >([]);
   const [connections, setConnections] = useState<
     { id: number; from: number; to: number; status: string }[]
   >([]);
   const [systemMessages, setSystemMessages] = useState<string[]>([]);
-  const router = useRouter();
 
-  const messages = [
-    "Initializing Kerala Palliative Care Grid...",
-    "Establishing secure connections...",
-    "Activating district nodes...",
-    "Connecting healthcare facilities...",
-    "Integrating community support systems...",
-    "Synchronizing clinical systems...",
-    "Activating response protocols...",
-    "Enabling critical services...",
-    "Finalizing system integration...",
-    "Launching Kerala Palliative Care Grid...",
+  // Array of healthcare participant types
+  const participantTypes = [
+    "doctor",
+    "nurse",
+    "hospital",
+    "patient",
+    "ambulance",
+    "volunteer",
+    "health",
   ];
+
+  // Function to render the appropriate SVG icon based on type
+  const renderIcon = (iconType: string, size: number) => {
+    return (
+      <div
+        style={{
+          width: size,
+          height: size,
+        }}
+        className="relative"
+      >
+        <Image
+          src={`/icons/${iconType}.svg`}
+          alt={iconType}
+          width={size}
+          height={size}
+          className="w-full h-full"
+          style={{ filter: "brightness(0) invert(1)" }}
+        />
+      </div>
+    );
+  };
 
   // Generate grid nodes
   useEffect(() => {
-    const nodes = [];
-    const rows = 12;
-    const cols = 15;
+    const nodes: {
+      id: number;
+      x: number;
+      y: number;
+      status: string;
+      iconType: string;
+    }[] = [];
+    const rows = 6;
+    const cols = 8;
+
+    // Create a more balanced distribution of icons
+    const iconDistribution: string[] = [];
+    const totalNodes = rows * cols;
+    const iconsPerType = Math.ceil(totalNodes / participantTypes.length);
+
+    // Fill the distribution array with a balanced mix of icon types
+    participantTypes.forEach((iconType) => {
+      for (let i = 0; i < iconsPerType; i++) {
+        iconDistribution.push(iconType);
+      }
+    });
+
+    // Shuffle the icon distribution array
+    for (let i = iconDistribution.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [iconDistribution[i], iconDistribution[j]] = [
+        iconDistribution[j],
+        iconDistribution[i],
+      ];
+    }
+
+    // Create nodes with random but fixed positions
+    // Use a seeded random approach to ensure consistency
+    const seed = 42; // Fixed seed for reproducibility
+    const pseudoRandom = (n: number) => {
+      // Simple pseudo-random function with seed
+      return ((n * 9301 + 49297) % 233280) / 233280;
+    };
 
     for (let i = 0; i < rows * cols; i++) {
       const row = Math.floor(i / cols);
       const col = i % cols;
 
-      // Add some randomness to positions for a more organic feel
-      const xOffset = Math.random() * 15 - 7.5;
-      const yOffset = Math.random() * 15 - 7.5;
+      // Generate random offsets using our seeded function
+      // This ensures the same "random" positions each time
+      const xOffset = pseudoRandom(seed + i * 2) * 20 - 10; // -10 to +10
+      const yOffset = pseudoRandom(seed + i * 2 + 1) * 20 - 10; // -10 to +10
+
+      // Base position plus random offset
+      const xPos = (col / (cols - 1)) * 85 + 7.5 + xOffset; // 7.5% padding on each side
+      const yPos = (row / (rows - 1)) * 85 + 7.5 + yOffset; // 7.5% padding on each side
+
+      // Assign an icon type from our balanced distribution
+      const iconType = iconDistribution[i % iconDistribution.length];
 
       nodes.push({
         id: i,
-        x: (col / (cols - 1)) * 100 + xOffset,
-        y: (row / (rows - 1)) * 100 + yOffset,
+        x: xPos, // Random but fixed position
+        y: yPos, // Random but fixed position
         status: "active",
+        iconType: iconType,
       });
     }
 
     setGridNodes(nodes);
 
-    // Generate connections between nodes
-    const conns = [];
+    // Generate connections between nodes - more strategic connections
+    const conns: { id: number; from: number; to: number; status: string }[] =
+      [];
     let connId = 0;
 
-    // Horizontal connections
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols - 1; col++) {
-        const fromId = row * cols + col;
-        const toId = row * cols + col + 1;
+    // Create a network where each node connects to 2-3 others
+    nodes.forEach((node) => {
+      // Find 2-3 closest nodes to connect to
+      const otherNodes = [...nodes].filter((n) => n.id !== node.id);
 
-        // Skip some connections randomly for a more organic feel
-        if (Math.random() > 0.3) {
+      // Sort by distance
+      otherNodes.sort((a, b) => {
+        const distA = Math.sqrt(
+          Math.pow(a.x - node.x, 2) + Math.pow(a.y - node.y, 2)
+        );
+        const distB = Math.sqrt(
+          Math.pow(b.x - node.x, 2) + Math.pow(b.y - node.y, 2)
+        );
+        return distA - distB;
+      });
+
+      // Connect to 2-3 closest nodes
+      const connectCount = 2 + Math.floor(pseudoRandom(seed + node.id) * 2); // 2-3 connections, but deterministic
+      const nodesToConnect = otherNodes.slice(0, connectCount);
+
+      nodesToConnect.forEach((targetNode) => {
+        // Check if this connection already exists
+        const connectionExists = conns.some(
+          (conn) =>
+            (conn.from === node.id && conn.to === targetNode.id) ||
+            (conn.from === targetNode.id && conn.to === node.id)
+        );
+
+        if (!connectionExists) {
           conns.push({
             id: connId++,
-            from: fromId,
-            to: toId,
+            from: node.id,
+            to: targetNode.id,
             status: "inactive",
           });
         }
-      }
-    }
-
-    // Vertical connections
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows - 1; row++) {
-        const fromId = row * cols + col;
-        const toId = (row + 1) * cols + col;
-
-        // Skip some connections randomly
-        if (Math.random() > 0.3) {
-          conns.push({
-            id: connId++,
-            from: fromId,
-            to: toId,
-            status: "inactive",
-          });
-        }
-      }
-    }
-
-    // Add some diagonal connections for more complexity
-    for (let row = 0; row < rows - 1; row++) {
-      for (let col = 0; col < cols - 1; col++) {
-        if (Math.random() > 0.6) {
-          const fromId = row * cols + col;
-          const toId = (row + 1) * cols + col + 1;
-
-          conns.push({
-            id: connId++,
-            from: fromId,
-            to: toId,
-            status: "inactive",
-          });
-        }
-      }
-    }
+      });
+    });
 
     setConnections(conns);
-  }, []);
+  }, []); // Empty dependency array ensures it only runs once
 
   // Handle the launch sequence
   useEffect(() => {
     if (!isLaunching) return;
 
-    // Add initial message and set initial progress
-    setSystemMessages([messages[0]]);
+    // Reset state to ensure clean start
+    const initialMessage = LAUNCH_MESSAGES[0];
+    setSystemMessages([initialMessage]);
     setLaunchStep(10);
 
-    // Remove node activation since they're already active
-    // Only activate connections with a small initial delay
-    const connInterval = setInterval(() => {
-      setConnections((prev) => {
-        const inactiveConns = prev.filter((conn) => conn.status === "inactive");
-        if (inactiveConns.length === 0) {
-          clearInterval(connInterval);
-          return prev;
+    // Simple sequential timer for messages
+    let currentMessageIndex = 1;
+    let timer: NodeJS.Timeout;
+
+    // Only start the timer if we haven't shown all messages yet
+    if (currentMessageIndex < LAUNCH_MESSAGES.length) {
+      timer = setInterval(() => {
+        if (currentMessageIndex < LAUNCH_MESSAGES.length) {
+          // Add next message
+          setSystemMessages((prev) => [
+            ...prev,
+            LAUNCH_MESSAGES[currentMessageIndex],
+          ]);
+          setLaunchStep((currentMessageIndex + 1) * 10);
+
+          // Activate some connections with each message
+          setConnections((prev) => {
+            const inactiveConns = prev.filter(
+              (conn) => conn.status === "inactive"
+            );
+            if (inactiveConns.length === 0) return prev;
+
+            // Activate about 20% of remaining inactive connections with each step
+            const numToActivate = Math.max(
+              1,
+              Math.floor(inactiveConns.length * 0.2)
+            );
+            const connsToActivate: number[] = [];
+
+            for (
+              let i = 0;
+              i < numToActivate && i < inactiveConns.length;
+              i++
+            ) {
+              const randomIndex = Math.floor(
+                Math.random() * inactiveConns.length
+              );
+              connsToActivate.push(inactiveConns[randomIndex].id);
+              inactiveConns.splice(randomIndex, 1);
+            }
+
+            return prev.map((conn) =>
+              connsToActivate.includes(conn.id)
+                ? { ...conn, status: "active" }
+                : conn
+            );
+          });
+
+          currentMessageIndex++;
+        } else {
+          // All messages displayed, clear interval and redirect
+          clearInterval(timer);
+
+          // Use window.location for direct navigation instead of router
+          setTimeout(() => {
+            window.location.href = "/launched";
+          }, 1500);
         }
-
-        // Activate 1-2 connections at a time for slower animation
-        const numToActivate = Math.min(
-          Math.floor(Math.random() * 2) + 1,
-          inactiveConns.length
-        );
-        const connsToActivate: number[] = [];
-
-        for (let i = 0; i < numToActivate; i++) {
-          const randomIndex = Math.floor(Math.random() * inactiveConns.length);
-          connsToActivate.push(inactiveConns[randomIndex].id);
-          inactiveConns.splice(randomIndex, 1);
-        }
-
-        return prev.map((conn) =>
-          connsToActivate.includes(conn.id)
-            ? { ...conn, status: "active" }
-            : conn
-        );
-      });
-    }, 60); // Slowed down connection activation
-
-    // Update system messages and progress together
-    let messageIndex = 1;
-    const messageInterval = setInterval(() => {
-      if (messageIndex < messages.length) {
-        setSystemMessages((prev) => [...prev, messages[messageIndex]]);
-        setLaunchStep((messageIndex + 1) * 10);
-        messageIndex++;
-      } else {
-        clearInterval(messageInterval);
-        setTimeout(() => {
-          router.push("/launched");
-        }, 1000); // Added small delay before redirect
-      }
-    }, 1200); // Slowed down message display
+      }, 1000);
+    }
 
     return () => {
-      clearInterval(connInterval);
-      clearInterval(messageInterval);
+      if (timer) clearInterval(timer);
     };
-  }, [isLaunching, router]);
+  }, [isLaunching]); // Only depend on isLaunching
 
   // Add keyboard event listener for Enter key
   useEffect(() => {
@@ -205,6 +283,12 @@ export default function LaunchPage() {
 
               if (!fromNode || !toNode) return null;
 
+              // Use consistent green color for connections
+              const connectionColor =
+                conn.status === "active"
+                  ? "rgba(16, 185, 129, 0.5)" // Consistent green with transparency
+                  : "#064e3b";
+
               return (
                 <motion.line
                   key={`conn-${conn.id}`}
@@ -216,44 +300,81 @@ export default function LaunchPage() {
                   animate={{
                     pathLength: conn.status === "active" ? 1 : 0,
                     opacity: conn.status === "active" ? 0.8 : 0.2,
-                    stroke: conn.status === "active" ? "#4ade80" : "#064e3b",
+                    stroke: connectionColor,
                   }}
-                  transition={{ duration: 0.5 }}
-                  stroke={conn.status === "active" ? "#4ade80" : "#064e3b"}
+                  transition={{
+                    duration: 0.8,
+                    pathLength: { type: "spring", stiffness: 50, damping: 15 },
+                  }}
+                  stroke={connectionColor}
                   strokeWidth={conn.status === "active" ? 2 : 1}
                 />
               );
             })}
+          </svg>
 
-            {/* Grid nodes */}
+          {/* Grid nodes with icons */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none">
             {gridNodes.map((node) => (
-              <g key={`node-${node.id}`}>
-                <motion.circle
-                  cx={`${node.x}%`}
-                  cy={`${node.y}%`}
-                  r={node.status === "active" ? 4 : 3}
-                  initial={{ scale: 0.5, opacity: 0.3 }}
-                  animate={{
-                    scale: node.status === "active" ? [1, 1.2, 1] : 0.8,
-                    opacity: node.status === "active" ? 1 : 0.3,
-                    fill: node.status === "active" ? "#4ade80" : "#064e3b",
+              <div
+                key={`node-${node.id}`}
+                className="absolute"
+                style={{
+                  left: `${node.x}%`,
+                  top: `${node.y}%`,
+                  transform: "translate(-50%, -50%)",
+                  opacity: node.status === "active" ? 1 : 0.3,
+                }}
+              >
+                {/* Icon with increased size for better visibility */}
+                <motion.div
+                  className="flex items-center justify-center rounded-full p-1"
+                  style={{
+                    width: node.status === "active" ? "40px" : "32px",
+                    height: node.status === "active" ? "40px" : "32px",
+                    backgroundColor:
+                      node.status === "active"
+                        ? "rgba(16, 185, 129, 0.3)" // Consistent green background for active
+                        : "rgba(6, 78, 59, 0.5)", // Darker background for inactive
+                    boxShadow:
+                      node.status === "active"
+                        ? "0 0 12px rgba(16, 185, 129, 0.5)" // Consistent green glow
+                        : "none",
+                    border:
+                      node.status === "active"
+                        ? "1px solid #10b981" // Consistent green border
+                        : "1px solid rgba(6, 78, 59, 0.8)",
                   }}
+                  animate={
+                    node.status === "active"
+                      ? {
+                          scale: [1, 1.08, 1],
+                        }
+                      : {}
+                  }
                   transition={{
-                    duration: 0.5,
-                    scale: {
-                      repeat:
-                        node.status === "active" ? Number.POSITIVE_INFINITY : 0,
-                      repeatType: "reverse",
-                      duration: 2,
-                    },
+                    duration: 3,
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatDelay: Math.random() * 2,
                   }}
-                  fill={node.status === "active" ? "#4ade80" : "#064e3b"}
-                />
+                >
+                  {renderIcon(
+                    node.iconType,
+                    node.status === "active" ? 28 : 22
+                  )}
+                </motion.div>
+
+                {/* Pulse effect */}
                 {node.status === "active" && (
-                  <motion.circle
-                    cx={`${node.x}%`}
-                    cy={`${node.y}%`}
-                    r={8}
+                  <motion.div
+                    className="absolute rounded-full border"
+                    style={{
+                      width: "52px",
+                      height: "52px",
+                      top: "-6px",
+                      left: "-6px",
+                      borderColor: "#10b981", // Consistent green border
+                    }}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{
                       scale: [0, 1.5, 0],
@@ -262,16 +383,37 @@ export default function LaunchPage() {
                     transition={{
                       duration: 2,
                       repeat: Number.POSITIVE_INFINITY,
-                      repeatDelay: Math.random() * 2,
+                      repeatDelay: Math.random() * 1.5,
                     }}
-                    fill="none"
-                    stroke="#4ade80"
-                    strokeWidth={1.5}
                   />
                 )}
-              </g>
+
+                {/* Add a second pulse effect for more dynamic animation */}
+                {node.status === "active" && (
+                  <motion.div
+                    className="absolute rounded-full"
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      top: "0px",
+                      left: "0px",
+                      backgroundColor: "rgba(16, 185, 129, 0.2)", // Consistent green background
+                    }}
+                    initial={{ scale: 1, opacity: 0.2 }}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.2, 0.5, 0.2],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatDelay: Math.random(),
+                    }}
+                  />
+                )}
+              </div>
             ))}
-          </svg>
+          </div>
         </div>
 
         {/* Kerala map outline */}
@@ -391,7 +533,7 @@ export default function LaunchPage() {
                           transition={{ duration: 0.2 }}
                         >
                           {index === systemMessages.length - 1 &&
-                          systemMessages.length === messages.length ? (
+                          systemMessages.length === LAUNCH_MESSAGES.length ? (
                             <CheckCircle2 className="h-4 w-4 mt-0.5 text-green-400 flex-shrink-0" />
                           ) : (
                             <span className="text-green-400 flex-shrink-0">
