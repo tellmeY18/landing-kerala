@@ -14,13 +14,13 @@ import Title from "@/components/title";
 import Icons from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import GovtOrgSelector from "@/components/govt-org-selector";
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, Suspense } from "react";
 import { Nav } from "@/components/Nav";
 import Footer from "@/components/footer";
+import { useSearchParams } from "next/navigation";
 
-export default function Page() {
-  const { t } = useI18n();
+// Component that uses useSearchParams
+function AutoScroll() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -58,11 +58,20 @@ export default function Page() {
       // Clean up timeout on component unmount
       return () => clearTimeout(startDelay);
     }
-  }, [searchParams]);
+  }, [searchParams]); // Added searchParams to dependency array
+
+  return null;
+}
+
+export default function Page() {
+  const { t } = useI18n();
 
   return (
     <>
       <Nav />
+      <Suspense fallback={null}>
+        <AutoScroll />
+      </Suspense>
       <main className="pb-24">
         <div className="relative h-[90vh] lg:min-h-screen -mt-40 -z-10">
           <div
