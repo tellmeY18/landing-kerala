@@ -14,7 +14,7 @@ import Title from "@/components/title";
 import Icons from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import GovtOrgSelector from "@/components/govt-org-selector";
-import { useEffect, Suspense } from "react";
+import { useEffect, Suspense, useRef } from "react";
 import { Nav } from "@/components/Nav";
 import Footer from "@/components/footer";
 import { useSearchParams } from "next/navigation";
@@ -22,10 +22,19 @@ import { useSearchParams } from "next/navigation";
 // Component that uses useSearchParams
 function AutoScroll() {
   const searchParams = useSearchParams();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Check if the autoscroll query parameter exists
     if (searchParams.has("autoscroll")) {
+      // Start playing the audio
+      if (audioRef.current) {
+        audioRef.current.volume = 0.3;
+        audioRef.current.play().catch((error) => {
+          console.log("Audio playback failed:", error);
+        });
+      }
+
       // Add a 2-second delay before starting the scroll
       const startDelay = setTimeout(() => {
         // Get the document height
@@ -48,19 +57,38 @@ function AutoScroll() {
             scrollPosition += scrollStep;
           } else {
             clearInterval(scrollInterval);
+            // Stop the music when scrolling is complete
+            if (audioRef.current) {
+              audioRef.current.pause();
+              audioRef.current.currentTime = 0;
+            }
           }
         }, 20); // Update every 20ms for smooth scrolling
 
         // Clean up interval on component unmount
-        return () => clearInterval(scrollInterval);
+        return () => {
+          clearInterval(scrollInterval);
+          // Stop the music when component unmounts
+          if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+          }
+        };
       }, 2000); // 2000ms = 2 seconds delay
 
       // Clean up timeout on component unmount
-      return () => clearTimeout(startDelay);
+      return () => {
+        clearTimeout(startDelay);
+        // Stop the music when component unmounts
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        }
+      };
     }
   }, [searchParams]); // Added searchParams to dependency array
 
-  return null;
+  return <audio ref={audioRef} src="/launch-sound-2.mp3" loop />;
 }
 
 export default function Page() {

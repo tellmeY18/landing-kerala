@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight } from "lucide-react";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 export default function LaunchedPage() {
   const [countdown, setCountdown] = useState(7);
   const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const redirectTimer = setInterval(() => {
@@ -61,8 +62,19 @@ export default function LaunchedPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Add effect for audio playback
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.play().catch((error) => {
+        console.log("Audio playback failed:", error);
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-950 to-green-900 text-green-50">
+      <audio ref={audioRef} src="/launch-sound-1.mp3" loop />
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center p-6">
         <motion.div

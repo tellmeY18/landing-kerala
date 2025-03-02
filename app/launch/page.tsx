@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Activity, CheckCircle2 } from "lucide-react";
@@ -29,6 +29,7 @@ export default function LaunchPage() {
     { id: number; from: number; to: number; status: string }[]
   >([]);
   const [systemMessages, setSystemMessages] = useState<string[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Array of healthcare participant types
   const participantTypes = [
@@ -182,6 +183,14 @@ export default function LaunchPage() {
   useEffect(() => {
     if (!isLaunching) return;
 
+    // Start playing the audio when launch begins
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3; // Set a comfortable volume
+      audioRef.current.play().catch((error) => {
+        console.log("Audio playback failed:", error);
+      });
+    }
+
     // Reset state to ensure clean start
     const initialMessage = LAUNCH_MESSAGES[0];
     setSystemMessages([initialMessage]);
@@ -271,6 +280,7 @@ export default function LaunchPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-950 to-green-900 text-green-50 overflow-hidden">
+      <audio ref={audioRef} src="/launch-sound.mp3" loop />
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center relative">
         {/* Grid visualization */}
