@@ -7,11 +7,13 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./locales/**/*.{js,ts,jsx,tsx,mdx,json}",
   ],
   theme: {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
+        malayalam: ["var(--font-anek-malayalam)"],
       },
       colors: {
         primary: {
