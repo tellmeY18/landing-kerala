@@ -17,7 +17,7 @@ export default function LaunchedPage() {
     }, 1000);
 
     const redirectTimeout = setTimeout(() => {
-      router.push("/");
+      router.push("/?autoscroll=true");
     }, 10000);
 
     return () => {
@@ -122,7 +122,7 @@ export default function LaunchedPage() {
               transition={{ delay: 1.1 }}
             >
               <Link
-                href="/"
+                href="/?autoscroll=true"
                 className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 <span>View Palliative Care Grid ({countdown}s)</span>

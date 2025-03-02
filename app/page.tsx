@@ -14,11 +14,51 @@ import Title from "@/components/title";
 import Icons from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import GovtOrgSelector from "@/components/govt-org-selector";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Nav } from "@/components/Nav";
 import Footer from "@/components/footer";
 
 export default function Page() {
   const { t } = useI18n();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    // Check if the autoscroll query parameter exists
+    if (searchParams.has("autoscroll")) {
+      // Add a 2-second delay before starting the scroll
+      const startDelay = setTimeout(() => {
+        // Get the document height
+        const documentHeight = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+
+        // Calculate scroll duration (adjust as needed for speed)
+        const scrollDuration = 60000; // 60 seconds to scroll to bottom
+        const scrollStep = documentHeight / (scrollDuration / 20); // pixels per step
+
+        let scrollPosition = 0;
+        const scrollInterval = setInterval(() => {
+          if (scrollPosition < documentHeight) {
+            window.scrollTo(0, scrollPosition);
+            scrollPosition += scrollStep;
+          } else {
+            clearInterval(scrollInterval);
+          }
+        }, 20); // Update every 20ms for smooth scrolling
+
+        // Clean up interval on component unmount
+        return () => clearInterval(scrollInterval);
+      }, 2000); // 2000ms = 2 seconds delay
+
+      // Clean up timeout on component unmount
+      return () => clearTimeout(startDelay);
+    }
+  }, [searchParams]);
 
   return (
     <>
