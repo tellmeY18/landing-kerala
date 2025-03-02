@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Kerala Care - Community Based Palliative Care Grid",
   description:
     "Kerala palliative care grid is a community-based healthcare network where trained volunteers and medical professionals collaborate to support people with Serious Health Related suffering through home-based care, incorporating medical, social, and emotional support for both patients and families. Monitored by the State Health Authority.",
+  metadataBase: new URL(process.env.SITE_URL!),
 };
 
 export default async function Layout({
